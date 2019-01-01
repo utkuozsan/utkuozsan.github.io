@@ -57,3 +57,10 @@ Yazıyı yazarken link kullanacağımız yerleri [some link ] [ another-link ] a
 [in the text][another-link]
 
 [another-link]:www.google.com
+
+# 5. Images  
+Resimleri yüklemek için ise 2 yöntemimiz var. Aynı link eklemede olduğu gibi resimleri de link ve referans vererek ekleyebiliyoruz.  
+ 1. Link vererek resim eklemek  
+   \!\[Text for image\]\(Link to a image\) Burada "!" önemli bunu yapmazsak resimler görüntülenmiyor.  
+   ![Utkan Alp](https://photos.google.com/photo/AF1QipMv0n4gbTUCXsz5ECD-MVhLbwXvqhDcQxr44YzB)
+   
