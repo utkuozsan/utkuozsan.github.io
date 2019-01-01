@@ -126,11 +126,11 @@ foo(3)
 
 And here is the same code yet again but with line numbers:
 
-{% highlight javascript linenos %}
-var foo = function(x) {
-  return(x + 5);
-}
-foo(3)
+{% highlight python linenos %}
+sum = 0
+for i in range(5):
+  sum = sum + i
+print(sum)
 {% endhighlight %}
 
 ## Boxes
@@ -139,7 +139,9 @@ You can add notification, warning and error boxes like this:
 ### Notification
 
 {: .box-note}
-**Note:** This is a notification box.
+**Note:** This is a notification box.  
+Line 2  
+Line 3
 
 ### Warning
 
