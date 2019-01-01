@@ -1,3 +1,8 @@
+---
+layout: post
+title: Markdown Kullanımı
+---
+
 Merhaba,
   bu dökümanda markdown üzerine aldığım kısa notlardan bahsedeceğim.
 
