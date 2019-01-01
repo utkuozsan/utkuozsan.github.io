@@ -63,4 +63,32 @@ Resimleri yüklemek için ise 2 yöntemimiz var. Aynı link eklemede olduğu gib
  1. Link vererek resim eklemek  
    \!\[Text for image\]\(Link to a image\) Burada "!" önemli bunu yapmazsak resimler görüntülenmiyor.  
    ![Crepe](https://s3-media3.fl.yelpcdn.com/bphoto/cQ1Yoa75m2yUFFbY2xwuqw/348s.jpg)
+ 2. Referans vererek resim eklemek  
+   \!\[Text for image\]\[reference-name\]  
+   \[reference-name\]: address    
+   ![Crepe][Photo-1]  
    
+   [Photo-1]:https://s3-media3.fl.yelpcdn.com/bphoto/cQ1Yoa75m2yUFFbY2xwuqw/348s.jpg
+   
+# 6. Blockquotos  
+  Deyimleri ve sözleri özel ayrı bir formatta görüntülememize yarıyor."" ile biten sözlerin başına > işaretini koyuyuyoruz.
+  >"Simplicity is the ultimate sophistication."
+  
+  >“I'm selfish, impatient and a little insecure. I make mistakes, I am out of control and at times hard to handle. But if you can't handle me at my worst, then you sure as hell don't deserve me at my best.” 
+― Marilyn Monroe
+
+# 7. Lists  
+Listleri iki formatta kullanabiliyoruz. Unordered ve ordered şekilde.  
+1. Unordered kullndığımız durumda "\*" işaretini her bir maddenin başına ekliyoruz.  
+ * Item 1
+    * Subitem 1
+    * Subitem 2
+ * Item 2 
+ * Item 3  
+2. Ordered kullandığımız durumda  
+    1. Order1
+    2. Order2
+    3. Order3
+# 8. Paragraphs  
+Insert new line yapmazsak paragrafları birbirinden ayıramıyoruz.Yani **hard break**.  
+Bir alt satıra geçip yazdığımız zamanki görünümü sağlayabilmemiz için 2 boşluk bırakıyoruz.Buna da **soft break** deniyor.
