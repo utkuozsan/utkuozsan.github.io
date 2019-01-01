@@ -89,6 +89,7 @@ Listleri iki formatta kullanabiliyoruz. Unordered ve ordered şekilde.
     1. Order1
     2. Order2
     3. Order3
+ 
 # 8. Paragraphs  
 Insert new line yapmazsak paragrafları birbirinden ayıramıyoruz.Yani **hard break**.  
 Bir alt satıra geçip yazdığımız zamanki görünümü sağlayabilmemiz için 2 boşluk bırakıyoruz.Buna da **soft break** deniyor.
