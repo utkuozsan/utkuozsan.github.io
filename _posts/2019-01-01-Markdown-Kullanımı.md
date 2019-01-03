@@ -1,6 +1,9 @@
 ---
 layout: post
 title: Markdown Kullanımı
+subtitle: Markdown üzerine kısa notlar
+tags: [test]
+comments: true
 ---
 
 Merhaba,
