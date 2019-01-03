@@ -4,7 +4,7 @@ title: Markdown Kullanımı
 subtitle: Markdown üzerine kısa notlar
 tags: [test]
 image: /img/markdown.jpg
-#bigimg: /img/path.jpg
+bigimg: /img/markdown.jpg
 comments: true
 ---
 
