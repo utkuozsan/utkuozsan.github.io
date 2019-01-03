@@ -5,6 +5,8 @@ subtitle: Markdown üzerine kısa notlar
 tags: [test]
 image: /img/markdown.jpg
 #bigimg: /img/markdown.jpg
+#gh-repo: daattali/beautiful-jekyll
+#gh-badge: [star, fork, follow]
 comments: true
 ---
 
