@@ -2,7 +2,7 @@
 layout: post
 title: Markdown Kullanımı
 subtitle: Markdown üzerine kısa notlar
-tags: [test]
+tags: [Markdown]
 image: /img/markdown.jpg
 #bigimg: /img/markdown.jpg
 #gh-repo: daattali/beautiful-jekyll
