@@ -3,6 +3,7 @@ layout: post
 title: Markdown Kullanımı
 subtitle: Markdown üzerine kısa notlar
 tags: [test]
+image: /img/markdown.jpg
 comments: true
 ---
 
