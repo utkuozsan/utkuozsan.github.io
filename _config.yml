@@ -25,7 +25,7 @@ description: Yeni Bir Başlangıç
 navbar-links:
   Blog:
   Hakkımda: "aboutme"
-  Projeler:
+  Projeler: "projeler"
   Kaynaklar:
     - Beautiful Jekyll: "http://deanattali.com/beautiful-jekyll/"
     - Learn markdown: "http://www.markdowntutorial.com/"
