@@ -40,9 +40,6 @@ avatar: "/img/profile_photo.jpg"
 # If you want to have an image logo in the top-left corner instead of the title text,
 # then specify the following parameter
 #title-img: "/img/profile_photo.jpg"
-#favicon
-favicon:
-  source: favicon.ico
 
 # --- Background colour/image options --- #
 
