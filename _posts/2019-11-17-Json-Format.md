@@ -186,3 +186,35 @@ print(new)
 
     ******[('ali', 45), ('mina', 23), ('mustafa', 20), ('sara', 10), ('nima', 9), ('peyman', 0)]
     
+```python
+students = [
+    {'name': 'Ali', 'age': 20, 'scores': [90,0,91,87]},
+    {'name': 'Peyman', 'age': 30, 'scores': [0,0,0,0]},
+    {'name': 'Sara', 'age': 19, 'scores': [45,100,56,40]},
+    {'name': 'Mina', 'age': 32, 'scores': [100,0,100,40]},
+]
+
+students = [
+    'Alikjgkjhakjfghkjaldhfx',
+    'Peymanajfdglkjasflgkj',
+    'Saraiuyewjhsbnfz',
+    'Minakjsdhfkjzcv',
+]
+
+def foo(s):
+    return s[-1]
+
+# def foo(x):
+#     return sum(x['scores'])/len(x['scores'])
+```
+```python
+#new = sorted(l, key=hello)
+#sorted(students, key=foo, reverse=True)
+
+sorted(students, key=foo, reverse = True)
+```
+    [{'age': 20, 'name': 'Ali', 'scores': [90, 0, 91, 87]},
+     {'age': 19, 'name': 'Sara', 'scores': [45, 100, 56, 40]},
+     {'age': 32, 'name': 'Mina', 'scores': [100, 0, 100, 40]},
+     {'age': 30, 'name': 'Peyman', 'scores': [0, 0, 0, 0]}]
+
