@@ -128,7 +128,7 @@ print(final_list)
 
 ```python
 characters = []
-for episode in json.loads(open(r"d:\2019_ONE_Directory_for_docs\TURKCELL_AKADEMI\ADVANCED PYTHON\day1\day1\episodes.json").read())['episodes']:
+for episode in json.loads(open(r"d:\directory_location\episodes.json").read())['episodes']:
     for scene in episode['scenes']:
         for character in scene['characters']:
             if character['name'] not in characters:
