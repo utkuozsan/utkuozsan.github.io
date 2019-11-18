@@ -321,5 +321,8 @@ subnet_of_IP[0]
 
 
     IPv4Network('192.0.2.0/30')
+# Reference
+https://pymotw.com/3/ipaddress/
+https://dbader.org/blog/python-ipaddress-module
 
 
