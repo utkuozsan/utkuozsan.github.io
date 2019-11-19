@@ -1,5 +1,9 @@
 
+**The ipaddress module includes classes for working with IPv4 and IPv6 network addresses. The classes support validation, finding addresses and hosts on a network, and other common operations**
+
 # 1. Address
+
+The most basic object represents the network address itself. Pass a string, integer, or byte sequence to ip_address() to construct an address. The return value will be a IPv4Address or IPv6Address instance, depending on the type of address being used.
 
 
 ```python
