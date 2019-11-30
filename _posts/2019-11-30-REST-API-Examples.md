@@ -1,4 +1,14 @@
-
+---
+layout: post
+title: REST API, GET, POST 
+subtitle: API kullanılarak JSON formatında bilgiler alma
+tags: [Python,Restful,time]
+#image: /img/markdown.jpg
+#bigimg: /img/markdown.jpg
+#gh-repo: daattali/beautiful-jekyll
+#gh-badge: [star, fork, follow]
+comments: true
+---
 ## MY IP Example
 
 PC'nin IPsini öğrenip nereye kayıtlı olduğu bilgisini aldık.
