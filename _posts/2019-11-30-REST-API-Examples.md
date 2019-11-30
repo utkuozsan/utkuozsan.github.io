@@ -12,6 +12,8 @@ comments: true
 PC'nin IPsini öğrenip nereye kayıtlı olduğu bilgisini aldık.
 
 
+
+
 ## IP Example
 ```python
 import requests, json
