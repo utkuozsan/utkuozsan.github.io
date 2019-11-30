@@ -9,13 +9,10 @@ tags: [Python,Restful,time]
 #gh-badge: [star, fork, follow]
 comments: true
 ---
-## MY IP Example
-
-
-
 PC'nin IPsini öğrenip nereye kayıtlı olduğu bilgisini aldık.
 
 
+## IP Example
 ```python
 import requests, json
 
