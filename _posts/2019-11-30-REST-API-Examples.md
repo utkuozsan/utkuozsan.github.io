@@ -25,8 +25,8 @@ print(geoip_info['query'], geoip_info['country'], geoip_info['city'], geoip_info
 
 ```
 
-    176.43.218.125
-    176.43.218.125 Turkey Ankara AS34984 TELLCOM ILETISIM HIZMETLERI A.S.
+    A.B.C.D
+    A.B.C.D Turkey Ankara AS34984 TELLCOM ILETISIM HIZMETLERI A.S.
     
 
 **res.json() ve json.loads(res.text) her ikisi de dict formatını veriyor.**
