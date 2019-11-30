@@ -9,12 +9,11 @@ tags: [Python,Restful,time]
 #gh-badge: [star, fork, follow]
 comments: true
 ---
+
+## IP Example
 PC'nin IPsini öğrenip nereye kayıtlı olduğu bilgisini aldık.
 
 
-
-
-## IP Example
 ```python
 import requests, json
 
@@ -27,7 +26,7 @@ print(geoip_info['query'], geoip_info['country'], geoip_info['city'], geoip_info
 ```
 
     A.B.C.D
-    A.B.C.D Turkey Ankara AS34984 TELLCOM ILETISIM HIZMETLERI A.S.
+    A.B.C.D Turkey Ankara 
     
 
 **res.json() ve json.loads(res.text) her ikisi de dict formatını veriyor.**
