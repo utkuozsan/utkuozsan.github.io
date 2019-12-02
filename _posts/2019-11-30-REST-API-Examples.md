@@ -2,7 +2,7 @@
 layout: post
 title: REST API, GET, POST 
 subtitle: API kullanılarak JSON formatında bilgiler alma
-tags: [Python,Restful,time]
+tags: [python,Restful,time]
 #image: /img/markdown.jpg
 #bigimg: /img/markdown.jpg
 #gh-repo: daattali/beautiful-jekyll
