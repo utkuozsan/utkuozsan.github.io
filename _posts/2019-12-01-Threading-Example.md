@@ -1,4 +1,14 @@
-
+---
+layout: post
+title: Threading Example
+subtitle: Bir network subnetinde threading örneği 
+tags: [python, threading]
+#image: /img/markdown.jpg
+#bigimg: /img/markdown.jpg
+#gh-repo: daattali/beautiful-jekyll
+#gh-badge: [star, fork, follow]
+comments: true
+---
 
 ```python
 import threading
