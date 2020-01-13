@@ -37,6 +37,16 @@ print 'global : ',a
 h() 
 print 'global : ',a 
 ```
+Output:
+
+global :  1
+Inside f() :  1
+global :  1
+Inside g() :  2
+global :  1
+Inside h() :  3
+global :  3
+
 
 Ref: https://www.geeksforgeeks.org/global-local-variables-python/
 
