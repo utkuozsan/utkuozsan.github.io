@@ -1,3 +1,15 @@
+---
+layout: post
+title: Concurrent Futures Examples
+subtitle: 
+tags: [python, threading]
+#image: /img/markdown.jpg
+#bigimg: /img/markdown.jpg
+#gh-repo: daattali/beautiful-jekyll
+#gh-badge: [star, fork, follow]
+comments: true
+---
+
 ```python
 import concurrent.futures
 import time
