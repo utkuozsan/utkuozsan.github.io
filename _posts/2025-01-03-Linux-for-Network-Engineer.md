@@ -18,6 +18,12 @@ comments: true
 - [How is Linux Used in the Enterprise?](#how-is-linux-used-in-the-enterprise)
 - [How do I know What Type of Linux I am Using?](#how-do-i-know-what-type-of-linux-i-am-using)
   - [Where do I find the things ?](#where-do-i-find-the-things-)
+  - [/bin, /sbin, /usr/sbin](#bin-sbin-usrsbin)
+  - [/dev](#dev)
+  - [/etc](#etc)
+  - [/home](#home)
+  - [/var](#var)
+- [Where are the applications, and how do I run them?](#where-are-the-applications-and-how-do-i-run-them)
 
 
 # What is a Kernel, and What does it Do?
@@ -104,6 +110,23 @@ Files and folders. Interaction with and navigation of the linux file system is d
 - mkdir , rmdir
 
 ![Linux File System](../img/Linux_for_NE/linux_file_system.jpg)
+
+## /bin, /sbin, /usr/sbin
+Executable programs are stored.
+
+## /dev 
+Where files representing hardware devices are stored. Like floppy drive device /dev/fd0
+
+## /etc
+Where configuration files are stored.
+
+## /home
+Where user home directories are stored, one for each user
+
+## /var
+Where variable-length files, like log files, are stored.
+
+# Where are the applications, and how do I run them?
 
 
 
