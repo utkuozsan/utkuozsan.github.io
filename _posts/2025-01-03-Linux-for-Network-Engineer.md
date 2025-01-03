@@ -80,7 +80,7 @@ The **uname** command shows the basic type of operating system you are using.
 
 ```bash
 utku@# uname -a
-Linux vmi1580390.contaboserver.net 5.15.0-113-generic #123-Ubuntu SMP Mon Jun 10 08:16:17 UTC 2024 x86_64 x86_64 x86_64 GNU/Linux
+Linux mydomain.net 5.15.0-113-generic #123-Ubuntu SMP Mon Jun 10 08:16:17 UTC 2024 x86_64 x86_64 x86_64 GNU/Linux
 ```
 **hostnamectl** command shows you the hostname of the linux server as well as the other system informations.
 
