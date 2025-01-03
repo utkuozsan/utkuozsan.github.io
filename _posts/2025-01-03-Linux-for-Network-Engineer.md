@@ -44,7 +44,6 @@ For example, your Linux system may have a daemon called *sshd*. This system daem
 System daemons do not interact with users and are not typically under the direct control of users, but rather of the system itself. 
 
 # User Space vs Kernel Space 
-<a id="kernel-details"></a>
 
 Operating systems all execute their kernel in protected and restricted memory that is called **kernel space** to prevent the kernel from terminating and crashing the system. 
 
@@ -55,6 +54,53 @@ All applications, even system daemon processes that perform critical operating s
 Separating between user space and kernel space  is made to ensure that Linux is as reliable and secure an operating system as possible.
 
 **Note:**  Figure 1.4
+
+# How is Linux Used in the Enterprise?
+- Automation and orchestration
+- Server Virtualisation
+
+The software that allows VMs to function is called a *hypervisor*. Linux includes an excellent hypervisor called **KVM**.
+
+- Private Cloud
+- Big Data
+- Containers
+
+# How do I know What Type of Linux I am Using?
+
+The **uname** command shows the basic type of operating system you are using.
+
+```bash
+utku@# uname -a
+Linux vmi1580390.contaboserver.net 5.15.0-113-generic #123-Ubuntu SMP Mon Jun 10 08:16:17 UTC 2024 x86_64 x86_64 x86_64 GNU/Linux
+```
+**hostnamectl** command shows you the hostname of the linux server as well as the other system informations.
+
+```bash
+# hostnamectl 
+ Static hostname: debian
+       Icon name: computer-vm
+         Chassis: vm
+      Machine ID: 5120104a8a29sdfsdf190623b65910546
+         Boot ID: f311csdfsdfsdfe4a06b274f2148c994dee
+  Virtualization: kvm
+Operating System: Ubuntu 22.04.4 LTS               
+          Kernel: Linux 5.15.0-113-generic
+    Architecture: x86-64
+ Hardware Vendor: QEMU
+  Hardware Model: Standard PC _i440FX + PIIX, 1996_
+```
+
+## Where do I find the things ? 
+
+Files and folders. Interaction with and navigation of the linux file system is done up and down the tree with commands such as:
+
+- pwd
+- ls
+- cd
+- rm
+- mkdir , rmdir
+
+
 
 
 
