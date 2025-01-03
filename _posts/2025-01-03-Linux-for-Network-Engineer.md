@@ -18,7 +18,6 @@ comments: true
 
 
 # What is a Kernel, and What does it Do?
-
 The **kernel** is the special piece of the operating system that controls 
 - the CPU hardware
 - allocates memory 
@@ -45,6 +44,7 @@ For example, your Linux system may have a daemon called *sshd*. This system daem
 System daemons do not interact with users and are not typically under the direct control of users, but rather of the system itself. 
 
 # User Space vs Kernel Space 
+<a id="kernel-details"></a>
 
 Operating systems all execute their kernel in protected and restricted memory that is called **kernel space** to prevent the kernel from terminating and crashing the system. 
 
