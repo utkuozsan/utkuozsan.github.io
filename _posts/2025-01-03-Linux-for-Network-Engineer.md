@@ -15,6 +15,9 @@ comments: true
 - [What is the boot process ?](#what-is-the-boot-process-)
 - [What is Linux Daemon?](#what-is-linux-daemon)
 - [User Space vs Kernel Space](#user-space-vs-kernel-space)
+- [How is Linux Used in the Enterprise?](#how-is-linux-used-in-the-enterprise)
+- [How do I know What Type of Linux I am Using?](#how-do-i-know-what-type-of-linux-i-am-using)
+  - [Where do I find the things ?](#where-do-i-find-the-things-)
 
 
 # What is a Kernel, and What does it Do?
@@ -100,7 +103,7 @@ Files and folders. Interaction with and navigation of the linux file system is d
 - rm
 - mkdir , rmdir
 
-
+![Linux File System](../img/Linux_for_NE/linux_file_system.jpg)
 
 
 
