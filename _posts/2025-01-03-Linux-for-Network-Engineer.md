@@ -24,6 +24,7 @@ comments: true
   - [/home](#home)
   - [/var](#var)
 - [Where are the applications, and how do I run them?](#where-are-the-applications-and-how-do-i-run-them)
+- [How do I install Applications?](#how-do-i-install-applications)
 
 
 # What is a Kernel, and What does it Do?
@@ -124,10 +125,36 @@ Where configuration files are stored.
 Where user home directories are stored, one for each user
 
 ## /var
+
 Where variable-length files, like log files, are stored.
 
 # Where are the applications, and how do I run them?
 
+Most user tools are found in the directories */bin*, */usr/bin* and system tools are typically
+located in */sbin* and */usr/sbin*. 
 
+For example, tools like **cp**, **ps**, **cat**.All are found in */bin*.
+
+The useful thing is that you dont need to go into any of these directories and run the particular tool because these directories are included in your **$PATH** variable by default.
+
+```bash
+root@vmi1580390:~/blog# echo $PATH
+/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:
+```
+
+To run an application that you created if the directory of the application is not in the **$PATH** variable. First, we need to go to the directory then run the application **./myapp**.
+
+**apt list --installed** and get a list of the packages that are already installed. **apt list | less** gives the output page by page.
+
+
+# How do I install Applications?
+
+This command doesnt actually update any software, but it does make sure you are looking at a list of currently available package versions.
+
+**sudo apt update**
+
+To install a packet, **sudo apt install ssh**.
+
+To verify a package that we installed correctly. **apt show ssh**.
 
 
