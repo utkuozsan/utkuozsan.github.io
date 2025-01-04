@@ -25,6 +25,10 @@ comments: true
   - [/var](#var)
 - [Where are the applications, and how do I run them?](#where-are-the-applications-and-how-do-i-run-them)
 - [How do I install Applications?](#how-do-i-install-applications)
+- [Linux Processes, Programs and Services](#linux-processes-programs-and-services)
+- [Importance of Linux Log Files](#importance-of-linux-log-files)
+- [Users and Superusers](#users-and-superusers)
+- [Files and Permissions](#files-and-permissions)
 
 
 # What is a Kernel, and What does it Do?
@@ -157,4 +161,78 @@ To install a packet, **sudo apt install ssh**.
 
 To verify a package that we installed correctly. **apt show ssh**.
 
+# Linux Processes, Programs and Services
 
+In Linux, when you start a program, it will run interectively by default. However, you can also run programs in the background (often called services.)
+
+This feature can be handy if you have a program that will take some time to process.You can just put it in the background and be alerted when it is completed.
+
+**/sbin/init** is PID (Process Identifier) #1 and its owned by root.
+```bash
+root@vmi1580390:~/blog# ps -ef
+UID          PID    PPID  C STIME TTY          TIME CMD
+root           1       0  0  2024 ?        00:07:09 /sbin/init
+root           2       0  0  2024 ?        00:00:01 [kthreadd]
+root           3       2  0  2024 ?        00:00:00 [rcu_gp]
+root           4       2  0  2024 ?        00:00:00 [rcu_par_gp]
+```
+Another option of the command is **ps -ef | less**.
+
+If you run only **ps**. You will see only the your running process.
+
+```bash
+root@vmi1580390:~/blog# ps
+    PID TTY          TIME CMD
+1525778 pts/9    00:00:00 bash
+1531185 pts/9    00:00:00 ps
+```
+
+Linux uses the concept of *system services*, which are long running programs that are run in the background and typically provide some service on behalf of system users. You can start, stop and check the status of services with the command **systemctl**.
+
+There is another useful command to check the logs is **journalctl**.
+
+# Importance of Linux Log Files
+
+Most linux systems log files will be found in **/var/log**.
+
+Some important log files are 
+- syslog
+- auth.log
+- messages
+
+
+A variety of different tools can be used to view and parse log files, such as:
+
+- cat
+- less
+- grep
+- head
+- tail
+  - tail -f /var/log/syslog
+
+# Users and Superusers
+
+In Linux, administrative privileges are preferred to as *superuser* privileges and are equivalent to the root user, who has a user ID of 0.
+
+- adduser
+- moduser
+- deluser
+
+```bash
+root@vm:~/blog# id
+uid=0(root) gid=0(root) groups=0(root)
+root@vm:~/blog# whoami
+root
+root@vm:~/blog# sudo id
+uid=0(root) gid=0(root) groups=0(root)
+root@vm:~/blog# sudo whoami
+root
+root@vm:~/blog#
+```
+
+Many systems prevent you from becoming the root user with **su** and instead require you to use the **sudo** command.
+
+The priveleges for who can run what are determined by the */etc/sudoers* file, and that file should be edited using **visudo** command to ensure safe access to a critically important configuration file. 
+
+
+# Files and Permissions
