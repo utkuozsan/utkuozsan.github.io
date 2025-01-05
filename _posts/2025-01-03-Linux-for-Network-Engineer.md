@@ -29,6 +29,8 @@ comments: true
 - [Importance of Linux Log Files](#importance-of-linux-log-files)
 - [Users and Superusers](#users-and-superusers)
 - [Files and Permissions](#files-and-permissions)
+- [Understanding Linux Network Interfaces](#understanding-linux-network-interfaces)
+  - [Predictable Network Interface naming convention](#predictable-network-interface-naming-convention)
 
 
 # What is a Kernel, and What does it Do?
@@ -236,3 +238,41 @@ The priveleges for who can run what are determined by the */etc/sudoers* file, a
 
 
 # Files and Permissions
+
+```bash
+root@# ls -al /var/log/syslog
+-rw-r----- 1 syslog adm 32402 Jan  6 00:20 /var/log/syslog
+```
+- The file is owned by syslog and the group "adm".
+- The file permissions are rw and r for the group and with no permission for anyone else.
+- The two most important types of objects in the linux system are directories(d) and files(-).
+- **UGO** is the abbrevation to remember the file permission to the users.User, group and others.
+
+![Linux File Permissions](../img/Linux_for_NE/linux_file_permission.jpg)
+
+# Understanding Linux Network Interfaces
+
+## Predictable Network Interface naming convention
+- Loopback (lo)
+- Ethernet 0 (eth0)
+
+With the *predictable network interface* naming convention. So, rather than an interface named **eth0**, it may have one named **ens3** or **enp0s3**.
+
+The format follows a pattern such as;
+<type><slot><number>
+
+- <type> can be en for Ethernet, wl for Wi-Fi, br for bridges, veth for virtual interfaces, etc.
+- <slot> refers to the physical location of the device, often a combination of letters and numbers that specify the device's bus, slot, or other identifying factors.
+- <number> is a unique identifier for each device of the same type.
+For example:
+
+- enp3s0: Ethernet interface located at PCI bus 3, slot 0
+- wlp2s0: Wireless interface located at PCI bus 2, slot 0
+- enx001e06302d29: Ethernet interface identified by its MAC address (00:1e:06:30:2d:29)
+- VLANs: enp3s0.10 (VLAN 10 on interface enp3s0)
+
+Why Predictable Naming?
+- Predictable naming improves network configuration and management in various ways:
+- Avoids interface renaming after reboots: Older systems would often rename interfaces on reboot based on the order in which they were detected.
+- Better identification of hardware: The new names help you easily identify the location of physical hardware and virtual interfaces based on their names.
+- Consistency: It reduces confusion and errors when working with multiple network interfaces, especially in environments with many devices or virtual interfaces (e.g., containers, virtual machines)
