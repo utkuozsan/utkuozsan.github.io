@@ -263,18 +263,20 @@ The format follows a pattern such as;
 <type><slot><number>
 ```
 
-- <type> can be en for Ethernet, wl for Wi-Fi, br for bridges, veth for virtual interfaces, etc.
-- <slot> refers to the physical location of the device, often a combination of letters and numbers that specify the device's bus, slot, or other identifying factors.
-- <number> is a unique identifier for each device of the same type.
-For example:
+- **type** can be en for Ethernet, wl for Wi-Fi, br for bridges, veth for virtual interfaces, etc.
+- **slot** refers to the physical location of the device, often a combination of letters and numbers that specify the device's bus, slot, or other identifying factors.
+- **number** is a unique identifier for each device of the same type.
 
+For example:
 - enp3s0: Ethernet interface located at PCI bus 3, slot 0
 - wlp2s0: Wireless interface located at PCI bus 2, slot 0
 - enx001e06302d29: Ethernet interface identified by its MAC address (00:1e:06:30:2d:29)
 - VLANs: enp3s0.10 (VLAN 10 on interface enp3s0)
 
 Why Predictable Naming?
-- Predictable naming improves network configuration and management in various ways:
-- Avoids interface renaming after reboots: Older systems would often rename interfaces on reboot based on the order in which they were detected.
-- Better identification of hardware: The new names help you easily identify the location of physical hardware and virtual interfaces based on their names.
-- Consistency: It reduces confusion and errors when working with multiple network interfaces, especially in environments with many devices or virtual interfaces (e.g., containers, virtual machines)
+Predictable naming improves network configuration and management in various ways:
+
+- *Avoids interface renaming after reboots*: Older systems would often rename interfaces on reboot based on the order in which they were detected.
+- *Better identification of hardware*: The new names help you easily identify the location of physical hardware and virtual interfaces based on their names.
+- *Consistency*: It reduces confusion and errors when working with multiple network interfaces, especially in environments with many devices or virtual interfaces (e.g., containers, virtual machines)
+
