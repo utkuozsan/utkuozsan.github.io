@@ -259,7 +259,9 @@ root@# ls -al /var/log/syslog
 With the *predictable network interface* naming convention. So, rather than an interface named **eth0**, it may have one named **ens3** or **enp0s3**.
 
 The format follows a pattern such as;
+```
 <type><slot><number>
+```
 
 - <type> can be en for Ethernet, wl for Wi-Fi, br for bridges, veth for virtual interfaces, etc.
 - <slot> refers to the physical location of the device, often a combination of letters and numbers that specify the device's bus, slot, or other identifying factors.
