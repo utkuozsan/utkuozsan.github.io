@@ -27,7 +27,7 @@ navbar-links:
 #  About: "aboutme"
   Projects: "projeler"
   Resume: "resume"
-  Resume2: "resume2"
+#  Resume2: "resume2"
   Resources:
     - Beautiful Jekyll: "http://deanattali.com/beautiful-jekyll/"
     - Learn markdown: "http://www.markdowntutorial.com/"
