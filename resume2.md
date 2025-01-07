@@ -2,18 +2,6 @@
 layout: resume2
 title: Resume
 use-site-title: true
-name: Utku Ozsan
-header:
-  - text: |
-      <span style="font-size: 1.2em; font-weight: bold;">Senior Network Engineer</span>
-  - text: <span class="iconify" data-icon="tabler:phone"></span> (+31)616140133
-    newLine: true
-  - text: <span class="iconify" data-icon="tabler:mail"></span> utkuozsan@gmail.com
-    link: mailto:utkuozsan@gmail.com
-  - text: <span class="iconify" data-icon="tabler:brand-github"></span> uozsan
-    link: https://github.com/uozsan
-  - text: <span class="iconify" data-icon="charm:person"></span> utkuozsan.com
-    link: https://www.utkuozsan.com
 ---
 
 <!-- Important: Replace all template content, especially contact details, with your own information. -->
