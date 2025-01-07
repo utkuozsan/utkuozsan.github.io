@@ -24,7 +24,7 @@ description: Yeni Bir Başlangıç
 # List of links in the navigation bar
 navbar-links:
   Blog:
-  About: "aboutme"
+#  About: "aboutme"
   Projects: "projeler"
   Resume: "resume"
   Resources:
