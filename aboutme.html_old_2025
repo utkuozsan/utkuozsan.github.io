@@ -1,0 +1,36 @@
+---
+layout: page
+title: About me
+subtitle: "Utku Özsan"
+css: "/css/aboutme.css"
+---
+
+<div id="aboutme-section">
+
+<p class="about-text">
+<span class="fa fa-briefcase about-icon"></span>
+14+ years of experience in network design, analysis, troubleshooting, and automation. 
+Experienced in Huawei, Nokia, and Cisco routers and has a deep knowledge of BGP, OSPF, MPLS, RSVP, and ISIS. 
+  Uses Python and Python frameworks such as Nornir, Ansible, Netmiko and improves himself everyday to become a NetDevOps. 
+  Awarded many times certification programs (MIT-IoT Bootcamp, Udacity-Data Analyst Nanodegree etc.) 
+  from the company internal competitions. Also CCNA Security, CCNP, CCDP, CCIE-SP written, JNCIA- JUNOS, NRS-1 certified.
+</p>
+
+<p class="about-text">
+<span class="fa fa-graduation-cap about-icon"></span>
+Obtained my Bachelor of <strong> Electric and Electronics Engineer</strong> from the Gazi University,Ankara TURKEY.
+</p>
+
+<p class="about-text">
+<span class="fa fa-code about-icon"></span>
+My main expertise is <strong>Network technologies</strong>,however I am currently very interested in Python. I write <strong>Python scripts</strong>.I also like reading network technology blogs.
+</p>
+
+<p class="about-text">
+<span class="fa fa-heart about-icon"></span>
+I like playing <strong>table tennis</strong>, <strong>travelling</strong>
+</p>
+
+</div>
+
+<div id="contactme-section">
