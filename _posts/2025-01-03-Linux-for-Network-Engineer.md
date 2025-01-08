@@ -30,6 +30,9 @@ comments: true
 - [13. Files and Permissions](#13-files-and-permissions)
 - [14. Understanding Linux Network Interfaces](#14-understanding-linux-network-interfaces)
   - [14.1. Predictable Network Interface naming convention](#141-predictable-network-interface-naming-convention)
+  - [14.2. ip link command](#142-ip-link-command)
+  - [14.3. DHCP](#143-dhcp)
+  - [14.4. DNS](#144-dns)
 
 
 
@@ -279,4 +282,117 @@ Predictable naming improves network configuration and management in various ways
 - *Avoids interface renaming after reboots*: Older systems would often rename interfaces on reboot based on the order in which they were detected.
 - *Better identification of hardware*: The new names help you easily identify the location of physical hardware and virtual interfaces based on their names.
 - *Consistency*: It reduces confusion and errors when working with multiple network interfaces, especially in environments with many devices or virtual interfaces (e.g., containers, virtual machines)
+
+## 14.2. ip link command
+
+**ip link** command shows all the interfaces in a linux system. Output also contains MAC,MTU etc.
+
+```bash
+pi@raspberrypi02:~$ ip link
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN mode DEFAULT group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+2: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP mode DEFAULT group default qlen 1000
+    link/ether b8:27:eb:db:e2:91 brd ff:ff:ff:ff:ff:ff
+3: wlan0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP mode DORMANT group default qlen 1000
+    link/ether b8:27:eb:8e:b7:c4 brd ff:ff:ff:ff:ff:ff
+```
+
+The **ip link** command is also used to configure network interfaces. For example, you can change the status of the interfaces.
+```bash
+ip link set [dev] {up | down}
+ip link set lo mtu 1500
+man ip link # for more info
+```
+
+From the above output, we get MAC addresses. What if we want to get the IPs. 
+```bash
+pi@raspberrypi02:~$ ip addr
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host 
+       valid_lft forever preferred_lft forever
+2: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP group default qlen 1000
+    link/ether b8:27:eb:db:e2:91 brd ff:ff:ff:ff:ff:ff
+    inet 192.168.178.172/24 brd 192.168.178.255 scope global noprefixroute eth0
+       valid_lft forever preferred_lft forever
+    inet6 2001:1c08:700:dd00:55cd:49c2:b8d0:7075/64 scope global dynamic mngtmpaddr noprefixroute 
+       valid_lft 604695sec preferred_lft 604695sec
+    inet6 fe80::205d:217c:7509:8959/64 scope link 
+       valid_lft forever preferred_lft forever
+3: wlan0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP group default qlen 1000
+    link/ether b8:27:eb:8e:b7:c4 brd ff:ff:ff:ff:ff:ff
+    inet 192.168.178.219/24 brd 192.168.178.255 scope global dynamic noprefixroute wlan0
+       valid_lft 53743sec preferred_lft 42943sec
+    inet6 2001:1c08:700:dd00:202:7551:e582:b99f/64 scope global dynamic mngtmpaddr noprefixroute 
+       valid_lft 604695sec preferred_lft 604695sec
+    inet6 fe80::9918:ba05:52b4:46dd/64 scope link 
+       valid_lft forever preferred_lft forever
+
+```
+
+Other useful network tools are given below.
+
+```bash
+nc -zv [remote-host] [port-number]
+pi@raspberrypi02:~$ nc -zv www.google.com 80
+Connection to www.google.com (2a00:1450:400e:802::2004) 80 port [tcp/http] succeeded!
+pi@raspberrypi02:~$ nc -zv www.google.com 8080
+^C
+pi@raspberrypi02:~$ nc -zv www.google.com 443
+Connection to www.google.com (2a00:1450:400e:805::2004) 443 port [tcp/https] succeeded!
+
+pi@raspberrypi02:~$ ping -c1 www.google.com
+
+```
+
+## 14.3. DHCP
+
+The local configuration file for the DHCP client(called dhclient) is at /etc/dhcp/dhclient.conf. This configuration dictates to Linux how it will receive IP configuration information from a DHCP server.
+
+**dynamic** means that Linux get IP information from a dhcp server.
+
+```bash
+2: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP group default qlen 1000
+    link/ether b8:27:eb:db:e2:91 brd ff:ff:ff:ff:ff:ff
+    inet 192.168.178.172/24 brd 192.168.178.255 scope global noprefixroute eth0
+       valid_lft forever preferred_lft forever
+    inet6 2001:1c08:700:dd00:55cd:49c2:b8d0:7075/64 scope global **dynamic** mngtmpaddr noprefixroute 
+       valid_lft 604692sec preferred_lft 604692sec
+    inet6 fe80::205d:217c:7509:8959/64 scope link 
+       valid_lft forever preferred_lft forever
+
+```
+
+To check the status on the DHCP client, you can **cat** the syslog and **grep** for dhcp.
+```bash
+sudo grep -Ei dhcp /var/log/syslog
+Jan  8 23:58:28 raspberrypi02 dhcpcd[503]: wlan0: carrier lost
+Jan  8 23:58:28 raspberrypi02 dhcpcd[503]: wlan0: deleting address 2001:1c08:700:dd00:202:7551:e582:b99f/64
+Jan  8 23:58:28 raspberrypi02 dhcpcd[503]: wlan0: deleting route to 2001:1c08:700:dd00::/64
+Jan  8 23:58:28 raspberrypi02 dhcpcd[503]: wlan0: deleting default route via fe80::9698:8fff:fe91:1af0
+Jan  8 23:58:29 raspberrypi02 dhcpcd[503]: wlan0: deleting address fe80::9918:ba05:52b4:46dd
+Jan  8 23:58:29 raspberrypi02 dhcpcd[503]: wlan0: deleting route to 192.168.178.0/24
+Jan  8 23:58:29 raspberrypi02 dhcpcd[503]: wlan0: deleting default route via 192.168.178.1
+Jan  8 23:58:29 raspberrypi02 dhcpcd[503]: eth0: fe80::9698:8fff:fe91:1af0 is unreachable
+Jan  8 23:58:29 raspberrypi02 dhcpcd[503]: eth0: soliciting an IPv6 router
+Jan  8 23:58:29 raspberrypi02 dhcpcd[503]: eth0: Router Advertisement from fe80::9698:8fff:fe91:1af0
+Jan  8 23:58:40 raspberrypi02 dhcpcd[503]: wlan0: carrier acquired
+Jan  8 23:58:40 raspberrypi02 dhcpcd[503]: wlan0: IAID eb:8e:b7:c4
+Jan  8 23:58:40 raspberrypi02 dhcpcd[503]: wlan0: adding address fe80::9918:ba05:52b4:46dd
+Jan  8 23:58:41 raspberrypi02 dhcpcd[503]: wlan0: rebinding lease of 192.168.178.219
+Jan  8 23:58:41 raspberrypi02 dhcpcd[503]: wlan0: soliciting an IPv6 router
+Jan  8 23:58:45 raspberrypi02 dhcpcd[503]: wlan0: Router Advertisement from fe80::9698:8fff:fe91:1af0
+Jan  8 23:58:45 raspberrypi02 dhcpcd[503]: wlan0: adding address 2001:1c08:700:dd00:202:7551:e582:b99f/64
+Jan  8 23:58:45 raspberrypi02 dhcpcd[503]: wlan0: adding route to 2001:1c08:700:dd00::/64
+Jan  8 23:58:45 raspberrypi02 dhcpcd[503]: wlan0: requesting DHCPv6 information
+Jan  8 23:58:45 raspberrypi02 dhcpcd[503]: wlan0: adding default route via fe80::9698:8fff:fe91:1af0
+Jan  8 23:58:45 raspberrypi02 dhcpcd[503]: wlan0: probing address 192.168.178.219/24
+Jan  8 23:58:50 raspberrypi02 dhcpcd[503]: wlan0: leased 192.168.178.219 for 86400 seconds
+Jan  8 23:58:50 raspberrypi02 dhcpcd[503]: wlan0: adding route to 192.168.178.0/24
+Jan  8 23:58:50 raspberrypi02 dhcpcd[503]: wlan0: adding default route via 192.168.178.1
+```
+
+## 14.4. DNS
 
