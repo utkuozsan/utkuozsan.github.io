@@ -9,31 +9,31 @@ tags: [Linux]
 #gh-badge: [star, fork, follow]
 comments: true
 ---
+- [1. What is a Kernel, and What does it Do?](#1-what-is-a-kernel-and-what-does-it-do)
+- [2. What is an Operating System?](#2-what-is-an-operating-system)
+- [3. What is the boot process ?](#3-what-is-the-boot-process-)
+- [4. What is Linux Daemon?](#4-what-is-linux-daemon)
+- [5. User Space vs Kernel Space](#5-user-space-vs-kernel-space)
+- [6. How is Linux Used in the Enterprise?](#6-how-is-linux-used-in-the-enterprise)
+- [7. How do I know What Type of Linux I am Using?](#7-how-do-i-know-what-type-of-linux-i-am-using)
+  - [7.1. Where do I find the things ?](#71-where-do-i-find-the-things-)
+  - [7.2. /bin, /sbin, /usr/sbin](#72-bin-sbin-usrsbin)
+  - [7.3. /dev](#73-dev)
+  - [7.4. /etc](#74-etc)
+  - [7.5. /home](#75-home)
+  - [7.6. /var](#76-var)
+- [8. Where are the applications, and how do I run them?](#8-where-are-the-applications-and-how-do-i-run-them)
+- [9. How do I install Applications?](#9-how-do-i-install-applications)
+- [10. Linux Processes, Programs and Services](#10-linux-processes-programs-and-services)
+- [11. Importance of Linux Log Files](#11-importance-of-linux-log-files)
+- [12. Users and Superusers](#12-users-and-superusers)
+- [13. Files and Permissions](#13-files-and-permissions)
+- [14. Understanding Linux Network Interfaces](#14-understanding-linux-network-interfaces)
+  - [14.1. Predictable Network Interface naming convention](#141-predictable-network-interface-naming-convention)
 
-- [What is a Kernel, and What does it Do?](#what-is-a-kernel-and-what-does-it-do)
-- [What is an Operating System?](#what-is-an-operating-system)
-- [What is the boot process ?](#what-is-the-boot-process-)
-- [What is Linux Daemon?](#what-is-linux-daemon)
-- [User Space vs Kernel Space](#user-space-vs-kernel-space)
-- [How is Linux Used in the Enterprise?](#how-is-linux-used-in-the-enterprise)
-- [How do I know What Type of Linux I am Using?](#how-do-i-know-what-type-of-linux-i-am-using)
-  - [Where do I find the things ?](#where-do-i-find-the-things-)
-  - [/bin, /sbin, /usr/sbin](#bin-sbin-usrsbin)
-  - [/dev](#dev)
-  - [/etc](#etc)
-  - [/home](#home)
-  - [/var](#var)
-- [Where are the applications, and how do I run them?](#where-are-the-applications-and-how-do-i-run-them)
-- [How do I install Applications?](#how-do-i-install-applications)
-- [Linux Processes, Programs and Services](#linux-processes-programs-and-services)
-- [Importance of Linux Log Files](#importance-of-linux-log-files)
-- [Users and Superusers](#users-and-superusers)
-- [Files and Permissions](#files-and-permissions)
-- [Understanding Linux Network Interfaces](#understanding-linux-network-interfaces)
-  - [Predictable Network Interface naming convention](#predictable-network-interface-naming-convention)
 
 
-# What is a Kernel, and What does it Do?
+# 1. What is a Kernel, and What does it Do?
 The **kernel** is the special piece of the operating system that controls 
 - the CPU hardware
 - allocates memory 
@@ -44,22 +44,22 @@ The **kernel** is the special piece of the operating system that controls
 
 It is the first program loaded on the computer when the computer starts up. The most critical pieces of code in the kernel are loaded into protected areas of memory so that they cant be overwritten by other applications running in the operating system.
 
-# What is an Operating System?
+# 2. What is an Operating System?
 
 Hardware -> Kernel -> Operating System => Libraries, System Daemons, Shells, Tools
 
 
-# What is the boot process ?
+# 3. What is the boot process ?
 Note: Explain the booting process here
 
-# What is Linux Daemon?
+# 4. What is Linux Daemon?
 A **system daemon** in Linux is typically a background system process that awaits a specific set of conditions before jumping into action.
 
 For example, your Linux system may have a daemon called *sshd*. This system daemon runs in the background and accepts authorized incoming requests to log into the Linux host.
 
 System daemons do not interact with users and are not typically under the direct control of users, but rather of the system itself. 
 
-# User Space vs Kernel Space 
+# 5. User Space vs Kernel Space 
 
 Operating systems all execute their kernel in protected and restricted memory that is called **kernel space** to prevent the kernel from terminating and crashing the system. 
 
@@ -71,7 +71,7 @@ Separating between user space and kernel space  is made to ensure that Linux is 
 
 **Note:**  Figure 1.4
 
-# How is Linux Used in the Enterprise?
+# 6. How is Linux Used in the Enterprise?
 - Automation and orchestration
 - Server Virtualisation
 
@@ -81,7 +81,7 @@ The software that allows VMs to function is called a *hypervisor*. Linux include
 - Big Data
 - Containers
 
-# How do I know What Type of Linux I am Using?
+# 7. How do I know What Type of Linux I am Using?
 
 The **uname** command shows the basic type of operating system you are using.
 
@@ -106,7 +106,7 @@ Operating System: Ubuntu 22.04.4 LTS
   Hardware Model: Standard PC _i440FX + PIIX, 1996_
 ```
 
-## Where do I find the things ? 
+## 7.1. Where do I find the things ? 
 
 Files and folders. Interaction with and navigation of the linux file system is done up and down the tree with commands such as:
 
@@ -118,23 +118,23 @@ Files and folders. Interaction with and navigation of the linux file system is d
 
 ![Linux File System](../img/Linux_for_NE/linux_file_system.jpg)
 
-## /bin, /sbin, /usr/sbin
+## 7.2. /bin, /sbin, /usr/sbin
 Executable programs are stored.
 
-## /dev 
+## 7.3. /dev 
 Where files representing hardware devices are stored. Like floppy drive device /dev/fd0
 
-## /etc
+## 7.4. /etc
 Where configuration files are stored.
 
-## /home
+## 7.5. /home
 Where user home directories are stored, one for each user
 
-## /var
+## 7.6. /var
 
 Where variable-length files, like log files, are stored.
 
-# Where are the applications, and how do I run them?
+# 8. Where are the applications, and how do I run them?
 
 Most user tools are found in the directories */bin*, */usr/bin* and system tools are typically
 located in */sbin* and */usr/sbin*. 
@@ -153,7 +153,7 @@ To run an application that you created if the directory of the application is no
 **apt list --installed** and get a list of the packages that are already installed. **apt list | less** gives the output page by page.
 
 
-# How do I install Applications?
+# 9. How do I install Applications?
 
 This command doesnt actually update any software, but it does make sure you are looking at a list of currently available package versions.
 
@@ -163,7 +163,7 @@ To install a packet, **sudo apt install ssh**.
 
 To verify a package that we installed correctly. **apt show ssh**.
 
-# Linux Processes, Programs and Services
+# 10. Linux Processes, Programs and Services
 
 In Linux, when you start a program, it will run interectively by default. However, you can also run programs in the background (often called services.)
 
@@ -193,7 +193,7 @@ Linux uses the concept of *system services*, which are long running programs tha
 
 There is another useful command to check the logs is **journalctl**.
 
-# Importance of Linux Log Files
+# 11. Importance of Linux Log Files
 
 Most linux systems log files will be found in **/var/log**.
 
@@ -212,7 +212,7 @@ A variety of different tools can be used to view and parse log files, such as:
 - tail
   - tail -f /var/log/syslog
 
-# Users and Superusers
+# 12. Users and Superusers
 
 In Linux, administrative privileges are preferred to as *superuser* privileges and are equivalent to the root user, who has a user ID of 0.
 
@@ -237,7 +237,7 @@ Many systems prevent you from becoming the root user with **su** and instead req
 The priveleges for who can run what are determined by the */etc/sudoers* file, and that file should be edited using **visudo** command to ensure safe access to a critically important configuration file. 
 
 
-# Files and Permissions
+# 13. Files and Permissions
 
 ```bash
 root@# ls -al /var/log/syslog
@@ -250,9 +250,9 @@ root@# ls -al /var/log/syslog
 
 ![Linux File Permissions](../img/Linux_for_NE/linux_file_permission.jpg)
 
-# Understanding Linux Network Interfaces
+# 14. Understanding Linux Network Interfaces
 
-## Predictable Network Interface naming convention
+## 14.1. Predictable Network Interface naming convention
 - Loopback (lo)
 - Ethernet 0 (eth0)
 
