@@ -38,6 +38,16 @@ comments: true
     - [14.4.3. dig / getent ahosts / nslookup](#1443-dig--getent-ahosts--nslookup)
   - [14.5. Network Statistics and Counters](#145-network-statistics-and-counters)
   - [14.6. Configuring Network Interfaces](#146-configuring-network-interfaces)
+    - [14.6.1. ifdown/ifup commands](#1461-ifdownifup-commands)
+  - [14.7. Network Interface Bonding](#147-network-interface-bonding)
+- [15. Understanding Linux Networking](#15-understanding-linux-networking)
+  - [15.1. Layer 2 Interternetworking  on Linux](#151-layer-2-interternetworking--on-linux)
+    - [15.1.1. Bridging](#1511-bridging)
+    - [15.1.2. Spanning Tree](#1512-spanning-tree)
+  - [15.2. Layer3 Internetworking View on Linux Systems](#152-layer3-internetworking-view-on-linux-systems)
+    - [15.2.1. Neighbor Table](#1521-neighbor-table)
+    - [15.2.2. IP routing](#1522-ip-routing)
+    - [15.2.3. VLAN](#1523-vlan)
 
 
 
@@ -567,4 +577,152 @@ We want to change the eth0 IP address. To make this happen, we need to run the f
 However, once the Linux machine is restarted, the default IP address will be back on interface eth0.To make this IP address change persistent, we need to edit the file `/etc/network/interfaces` and add the configuration for eth0. In CentOS or RHEL, the file is `/etc/sysconfig/network-scripts`.
 
 
+```bash
+pi@raspberrypi02:~$ ip address show dev eth0 
+2: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP group default qlen 1000
+    link/ether b8:27:eb:db:e2:91 brd ff:ff:ff:ff:ff:ff
+    inet 192.168.178.172/24 brd 192.168.178.255 scope global noprefixroute eth0
+       valid_lft forever preferred_lft forever
+    inet6 2001:1c08:700:dd00:55cd:49c2:b8d0:7075/64 scope global dynamic mngtmpaddr noprefixroute 
+       valid_lft 604763sec preferred_lft 604763sec
+    inet6 fe80::205d:217c:7509:8959/64 scope link 
+       valid_lft forever preferred_lft forever
+```
+
+### 14.6.1. ifdown/ifup commands
+
+When the **ifup** command is executed, the config file is reread and the interface is brought back into opereation with its newly minted parameters.
+
+## 14.7. Network Interface Bonding
+
+Making one logical interface with putting more than one physical connnection. By this way, we provide redundancy and also increase the capacity with less configuration. 
+
+To use network bonding, you need to install the bonding kernel module **modprobe**. `sudo modprobe bonding` and `ip link help bond` 
+
+```bash
+sudo ip link add bond0 type bond mode 802.3ad
+sudo ip link set eth0 master bond0 
+sudo ip link set eth1 master bond0 
+sudo ip link set eth2 master bond0 
+
+```
+
+Linux currently supports the following bond modes:
+- balance-rr // round robin
+- active-backup
+- balance-xor // based on hash
+- broadcast
+- 802.3ad // LACP
+
+
+# 15. Understanding Linux Networking
+
+
+## 15.1. Layer 2 Interternetworking  on Linux
+
+Linux networking stack has rich layer 2 internetworking functionality and continues to evolve at a rapid pace. 
+
+### 15.1.1. Bridging 
+
+Bridges have traditionally been dedicated hardware devices, but you can easily create a bridge in Linux. For example, when you have a Linux host that has two or more network interfaces, you can create a bridge to pass traffic between these interfaces. You can add two interfaces to a Linux bridge with **ip link set** and **ip link add** using: 
+
+```bash
+sudo ip link add br0 type bridge ## Creating the bridge
+sudo ip link set eth0 master br0
+sudo ip link set eth1 master br0
+
+sudo bridge fdb show
+```
+
+Once the bridge has bridged, the difference Ethernet networks, all the devices on these networks  can communicate at least layer 2.
+
+![Bridge](../img/Linux_for_NE/bridge.png)
+
+### 15.1.2. Spanning Tree 
+
+arge networks are prone to accidental loops, such as connecting two switch ports on the same device, which can disrupt the network. Spanning Tree Protocol (STP) can mitigate these loops. Unlike Layer 3, which uses a TTL (Time to Live) field to eventually drop packets in loops, Layer 2 lacks such a mechanism, causing frames to loop indefinitely.
+
+Unlike layer 3 packets, layer 2 frames do not possess a TTL field. A packet contains a special field that is set by the host that first created the packet. Each router along the path will decrement this field by 1. 
+
+Also, because the packet is being bridged and not routed, the TTL field will never be examined by any of the devices and never decremented. The lack of TTL is one of the major problems with layer 2 networks. 
+
+Bridges that speak STP will exchange information about the network using Bridge Protocol Data Units (BPDUs). Through this BPDU exchange, the bridges will build a loopfree "tree" of the network. In our two-switch example, STP would disable one of the two links and never send traffic over it, until the active link failed. 
+
+## 15.2. Layer3 Internetworking View on Linux Systems
+
+The IP protocol is pretty heavily embedded in Linux systems, and it is the primary (and default) way for Linux systems to communicate with the rest of the world, so we’ll start with layer 3 internetworking.  One interesting thing to note is that the tables, tools, and processes used by end-nodes to reach other end-nodes are exactly the same as those used by routers (layer 3 internetworking devices) to forward packets to endnodes. 
+
+### 15.2.1. Neighbor Table 
+
+```bash
+pi@raspberrypi02:~$ ip neigh show
+192.168.178.47 dev wlan0 lladdr bc:d0:74:7d:8b:ef STALE
+192.168.178.90 dev eth0 lladdr 84:3a:4b:dd:7e:88 STALE
+192.168.178.1 dev eth0 lladdr 94:98:8f:91:1a:f0 REACHABLE
+192.168.178.47 dev eth0 lladdr bc:d0:74:7d:8b:ef DELAY
+192.168.178.86 dev eth0 lladdr 60:1a:c7:23:6e:c9 REACHABLE
+192.168.178.1 dev wlan0 lladdr 94:98:8f:91:1a:f0 STALE
+fe80::9698:8fff:fe91:1af0 dev eth0 lladdr 94:98:8f:91:1a:f0 router REACHABLE
+fe80::9698:8fff:fe91:1af0 dev wlan0 lladdr 94:98:8f:91:1a:f0 router REACHABLE
+pi@raspberrypi02:~$ ip n s
+192.168.178.47 dev wlan0 lladdr bc:d0:74:7d:8b:ef STALE
+192.168.178.90 dev eth0 lladdr 84:3a:4b:dd:7e:88 STALE
+192.168.178.1 dev eth0 lladdr 94:98:8f:91:1a:f0 STALE
+192.168.178.47 dev eth0 lladdr bc:d0:74:7d:8b:ef REACHABLE
+192.168.178.86 dev eth0 lladdr 60:1a:c7:23:6e:c9 STALE
+192.168.178.1 dev wlan0 lladdr 94:98:8f:91:1a:f0 STALE
+fe80::9698:8fff:fe91:1af0 dev eth0 lladdr 94:98:8f:91:1a:f0 router REACHABLE
+fe80::9698:8fff:fe91:1af0 dev wlan0 lladdr 94:98:8f:91:1a:f0 router REACHABLE
+```
+
+### 15.2.2. IP routing
+
+```bash
+default via 192.168.178.1 dev eth0 src 192.168.178.172 metric 202 
+default via 192.168.178.1 dev wlan0 proto dhcp src 192.168.178.219 metric 303 
+192.168.178.0/24 dev eth0 proto dhcp scope link src 192.168.178.172 metric 202 
+192.168.178.0/24 dev wlan0 proto dhcp scope link src 192.168.178.219 metric 303 
+```
+
+To create a static route to a router 192.168.178.1 through wlan0 interfaces, we would use the ip route command, like this :
+
+`ip route add default via 192.168.178.1 dev wlan0`
+`ip route add 8.8.8.0/24 via 192.168.178.1 dev wlan0`
+
+
+However, once the host is restarted, this route disappears because it’s not persistent. To make this route persistent, you would edit the /etc/network/interfaces file and, after the network device configuration, add a post-up command with the same ip route command so that this static route is added every time the Linux host is restarted or the network interface is brought up. Here’s an example of what it might look like in the /etc/network/interfaces file: 
+
+```bash
+iface eth1 inet static 
+address 192.168.1.1 
+netmask 255.255.255.0 
+post-up ip route add default via 192.168.1.1 dev eth1 
+```
+
+The purpose of the **post-up** command is to add the default route only after the network interface is brought up. 
+
+ ** Free range routing (FRR)** is an open-source Linux suite of IP routing protocols that includes BGP, IS-IS, LDP, OSPF, PIM, and RIP. Because it integrates with a wide variety of Linux stacks, FRR has a wide range of use cases including connecting hosts, VMs, and containers to the network, Internet access routers, and Internet peering. Based on the Quagga project, FRR is used by many companies for many use cases around the world. 
+
+### 15.2.3. VLAN
+
+![!\[VLAN\](image.png)](../img/Linux_for_NE/VLAN.png)
+
+```bash
+sudo modprobe 8021q 
+sudo ip link add br0 type bridge vlan_filtering 1 
+sudo ip link set eth1 master br0 
+sudo ip link set eth2 master br0 
+sudo ip link set eth3 master br0 
+sudo bridge vlan add dev eth1 vid 11 pvid untagged  
+sudo bridge vlan add dev eth3 vid 12 pvid untagged  
+sudo bridge vlan add dev eth2 vid 11  
+sudo bridge vlan add dev eth2 vid 12  
+sudo ip link set up dev br0 
+sudo ip link set up dev eth1 
+sudo ip link set up dev eth2 sudo ip link set up dev eth3 
+```
+
+- `bridge link show` Check the status of the bridge links
+- `bridge vlan show` Check the status of the VLAN traversing the bridge
+- `bridge fdb show` View the forwarding table
 
