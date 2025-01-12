@@ -687,6 +687,7 @@ default via 192.168.178.1 dev wlan0 proto dhcp src 192.168.178.219 metric 303
 To create a static route to a router 192.168.178.1 through wlan0 interfaces, we would use the ip route command, like this :
 
 `ip route add default via 192.168.178.1 dev wlan0`
+
 `ip route add 8.8.8.0/24 via 192.168.178.1 dev wlan0`
 
 
