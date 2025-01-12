@@ -691,7 +691,7 @@ To create a static route to a router 192.168.178.1 through wlan0 interfaces, we 
 `ip route add 8.8.8.0/24 via 192.168.178.1 dev wlan0`
 
 
-However, once the host is restarted, this route disappears because it’s not persistent. To make this route persistent, you would edit the /etc/network/interfaces file and, after the network device configuration, add a post-up command with the same ip route command so that this static route is added every time the Linux host is restarted or the network interface is brought up. Here’s an example of what it might look like in the /etc/network/interfaces file: 
+However, once the host is restarted, this route disappears because it’s not persistent. To make this route persistent, you would edit the `/etc/network/interfaces` file and, after the network device configuration, add a post-up command with the same ip route command so that this static route is added every time the Linux host is restarted or the network interface is brought up. Here’s an example of what it might look like in the `/etc/network/interfaces` file: 
 
 ```bash
 iface eth1 inet static 
@@ -700,9 +700,9 @@ netmask 255.255.255.0
 post-up ip route add default via 192.168.1.1 dev eth1 
 ```
 
-The purpose of the **post-up** command is to add the default route only after the network interface is brought up. 
+The purpose of the **post-up** command is to add the default route only after the network interface is brought up.
 
- ** Free range routing (FRR)** is an open-source Linux suite of IP routing protocols that includes BGP, IS-IS, LDP, OSPF, PIM, and RIP. Because it integrates with a wide variety of Linux stacks, FRR has a wide range of use cases including connecting hosts, VMs, and containers to the network, Internet access routers, and Internet peering. Based on the Quagga project, FRR is used by many companies for many use cases around the world. 
+ **Free range routing (FRR)** is an open-source Linux suite of IP routing protocols that includes BGP, IS-IS, LDP, OSPF, PIM, and RIP. Because it integrates with a wide variety of Linux stacks, FRR has a wide range of use cases including connecting hosts, VMs, and containers to the network, Internet access routers, and Internet peering. Based on the Quagga project, FRR is used by many companies for many use cases around the world. 
 
 ### 15.2.3. VLAN
 
