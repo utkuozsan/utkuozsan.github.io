@@ -748,7 +748,29 @@ The benefits of VXLAN are **better scale, more resiliency, better use of availab
 
 VTEPs can be implemented in hardware or software.
 
+- If you have two linux systems and you want to bridge them with VXLAN. you would install a bridge on both systems, add a local IP address to that bridge, and add a VTEP to that bridge pointing the VTEP to the other Linux host.
 
+![alt text](../img/Linux_for_NE/Linux_vxlan.png)
 
+**Linux System 1:**
+```bash
+sudo ip link add br0 type bridge vlan_filtering 1
+sudo ip link add vlan10 type vlan id 10 link bridge protocol none
+sudo ip addr add 10.0.0.1/24 dev vlan10
+sudo ip link add vtep10 type vxlan id 1010 local 10.1.0.1 remote 10.3.0.1 learning
+sudo ip link set eth1 master br0
+sudo bridge vlan add dev eth1 vid 10 pvid untagged
+
+```
+**Linux System 2:**
+```bash
+sudo ip link add br0 type bridge vlan_filtering 1
+sudo ip link add vlan10 type vlan id 10 link bridge protocol none
+sudo ip addr add 10.0.0.2/24 dev vlan10
+sudo ip link add vtep10 type vxlan id 1010 local 10.3.0.1 remote 10.1.0.1 learning
+sudo ip link set eth1 master br0
+sudo bridge vlan add dev eth1 vid 10 pvid untagged
+
+```
 
 **Ref:** Linux Networking 101 Books from David M. Davis
