@@ -48,6 +48,7 @@ comments: true
     - [15.2.1. Neighbor Table](#1521-neighbor-table)
     - [15.2.2. IP routing](#1522-ip-routing)
     - [15.2.3. VLAN](#1523-vlan)
+    - [15.2.4. VXLAN](#1524-vxlan)
 
 
 
@@ -727,3 +728,27 @@ sudo ip link set up dev eth2 sudo ip link set up dev eth3
 - `bridge vlan show` Check the status of the VLAN traversing the bridge
 - `bridge fdb show` View the forwarding table
 
+### 15.2.4. VXLAN
+
+An overlay network is built on top of a another network. 
+
+Overlay network is commonly called the virtual network.
+
+Encapsulation is one piece of data or packet in network is wrapped up in another type of data or network packet.
+
+Data --> TCP Segments --> IP packets --> Ethernet frames --> Physical media 
+
+VXLAN has possible 16.7 million possible networks.
+
+VXLAN encapsulates frames with **layer3/4(IP/UDP)** packets. 
+
+The connection between endpoints are called **VXLAN tunnels.** Encapsulated traffic flows across the network between the VXLAN tunnel end points(VTEPs - VXLAN Tunnel End Points.). 
+
+The benefits of VXLAN are **better scale, more resiliency, better use of available bandwidth**.
+
+VTEPs can be implemented in hardware or software.
+
+
+
+
+**Ref:** Linux Networking 101 Books from David M. Davis
